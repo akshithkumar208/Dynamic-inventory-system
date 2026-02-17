@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='ui.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>Inventory Admin</h2>
+  <a href="/dashboard" class="{% if request.path == '/dashboard' %}active{% endif %}">
+  📊 Dashboard
+</a>
+
+<a href="/inventory" class="{% if request.path == '/inventory' %}active{% endif %}">
+  📦 Inventory
+</a>
+
+<a href="/transfer" class="{% if request.path == '/transfer' %}active{% endif %}">
+  🚚 Transfer
+</a>
+
+<a href="/history" class="{% if request.path == '/history' %}active{% endif %}">
+  🕒 History
+</a>
+
+
+</div>
+
+<form method="get" action="/dashboard">
+  <input
+    name="q"
+    placeholder="Search products or stores..."
+    value="{{ request.args.get('q','') }}"
+  />
+</form>
+
+</div>
+
+<div class="content">
+  {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

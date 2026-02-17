@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3>Transfer History</h3>
+
+<div class="card">
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>From</th>
+      <th>To</th>
+    </tr>
+
+    {% if history %}
+      {% for h in history %}
+      <tr>
+        <td>{{ h.date }}</td>
+        <td>{{ h.product }}</td>
+        <td>{{ h.quantity }}</td>
+        <td>{{ h.from_store }}</td>
+        <td>{{ h.to_store }}</td>
+      </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td colspan="5">No transfer history yet</td>
+      </tr>
+    {% endif %}
+  </table>
+</div>
+
+{% endblock %}

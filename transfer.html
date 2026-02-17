@@ -1,0 +1,168 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- PAGE HEADER -->
+<div style="margin-bottom:20px">
+  <h3>Stock Transfer</h3>
+  <p style="color:#6b7280;font-size:14px">
+    Transfer products between factory and stores
+  </p>
+</div>
+
+<div class="grid">
+
+  <!-- AI SUGGESTION -->
+  <div class="card" style="margin-bottom:20px">
+    <h4>🤖 AI Suggested Transfer</h4>
+    {% if ai_suggestions %}
+      {% set rec = ai_suggestions[0] %}
+      <p>
+        Suggested: Move <b>{{ rec.qty }}</b> units of
+        <b>{{ rec.product }}</b> from
+        <b>{{ rec.from }}</b> → <b>{{ rec.to }}</b>
+      </p>
+    {% else %}
+      <p style="color:#22c55e">Stock levels are optimal</p>
+    {% endif %}
+  </div>
+
+  <!-- TRANSFER FORM -->
+  <div class="card">
+    <h4 style="margin-bottom:16px">Create Transfer</h4>
+
+    <form method="post" id="transferForm">
+
+      <div style="margin-bottom:14px">
+        <label>From Store</label>
+        <select name="from_store" id="fromStore"
+          style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd">
+          {% for s in stores %}<option>{{ s }}</option>{% endfor %}
+        </select>
+      </div>
+
+      <div style="margin-bottom:14px">
+        <label>To Store</label>
+        <select name="to_store" id="toStore"
+          style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd">
+          {% for s in stores %}<option>{{ s }}</option>{% endfor %}
+        </select>
+      </div>
+
+      <div style="margin-bottom:14px">
+        <label>Product</label>
+        <select name="product"
+          style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd">
+          {% for p in products %}<option>{{ p }}</option>{% endfor %}
+        </select>
+      </div>
+
+      <div style="margin-bottom:18px">
+        <label>Quantity</label>
+        <input type="number" name="qty" required
+          style="width:100%;padding:10px;border-radius:10px;border:1px solid #ddd">
+      </div>
+
+      <button type="submit" style="width:100%">Transfer Stock</button>
+    </form>
+  </div>
+
+  <!-- CHART -->
+  <div class="card">
+    <h4 style="margin-bottom:16px">Current Stock Distribution</h4>
+    <canvas id="stockPie" height="220"></canvas>
+  </div>
+
+</div>
+
+<!-- =================================================
+     🌫️ OVERLAY: LOADING → MOVING → DELIVERING
+================================================== -->
+<div id="transferOverlay">
+  <div class="overlay-box">
+
+    <div class="warehouse-label" id="fromLabel"></div>
+
+    <!-- LOADING PHASE -->
+    <div class="loading-zone">
+      <div class="box box1">📦</div>
+      <div class="box box2">📦</div>
+      <div class="box box3">📦</div>
+      <div class="truck-load idle">🚚</div>
+    </div>
+
+    <!-- MOVING PHASE -->
+    <div class="road">
+      <div class="truck-move">🚚</div>
+    </div>
+
+    <div class="warehouse-label" id="toLabel"></div>
+    <p class="status-text" id="statusText">Loading stock...</p>
+
+  </div>
+</div>
+
+<!-- =================================================
+     JS: CONTROL ANIMATION FLOW
+================================================== -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("transferForm");
+  const overlay = document.getElementById("transferOverlay");
+  const status = document.getElementById("statusText");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Set labels
+    document.getElementById("fromLabel").innerText =
+      "🏬 " + document.getElementById("fromStore").value;
+    document.getElementById("toLabel").innerText =
+      "🏪 " + document.getElementById("toStore").value;
+
+    overlay.classList.add("show");
+
+    // Phase 1: Loading
+    status.innerText = "Loading stock into truck...";
+
+    // Phase 2: Move truck
+    setTimeout(() => {
+      document.querySelector(".loading-zone").classList.add("done");
+      document.querySelector(".road").style.display = "block";
+      status.innerText = "Truck en route...";
+    }, 2200);
+
+    // Phase 3: Delivered
+    setTimeout(() => {
+      status.innerText = "Delivered successfully ✔";
+    }, 4200);
+
+    // Submit form
+    setTimeout(() => {
+      overlay.classList.remove("show");
+      form.submit();
+    }, 5200);
+  });
+});
+</script>
+
+<!-- CHART -->
+<script>
+if (window.stockChart) window.stockChart.destroy();
+window.stockChart = new Chart(stockPie, {
+  type: 'doughnut',
+  data: {
+    labels: {{ pie_labels | tojson }},
+    datasets: [{
+      data: {{ pie_values | tojson }},
+      backgroundColor: ['#4b2aad','#22c55e','#f59e0b','#ef4444']
+    }]
+  },
+  options: {
+    plugins: {
+      legend: { position: 'bottom' }
+    }
+  }
+});
+</script>
+
+{% endblock %}

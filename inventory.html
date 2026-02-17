@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- PAGE HEADER -->
+<div style="margin-bottom:20px">
+  <h3>Products Inventory</h3>
+  <p style="color:#6b7280;font-size:14px">
+    Manage stock levels across all stores
+  </p>
+</div>
+
+<!-- INVENTORY TABLE -->
+<div class="card">
+
+  <h4 style="margin-bottom:16px">Inventory Overview</h4>
+
+  <table>
+    <tr>
+      <th>Store</th>
+      <th>Product</th>
+      <th>Unit</th>
+      <th>Available Stock</th>
+      <th>Status</th>
+      <th>Update</th>
+    </tr>
+
+    {% for i in inventory %}
+    <tr>
+      <form method="post">
+
+        <td>{{ i.store }}</td>
+        <td>{{ i.product_name }}</td>
+        <td>{{ i.unit }}</td>
+
+        <td>
+          <input
+            type="number"
+            name="qty"
+            value="{{ i.units_in_stock }}"
+            style="width:90px;padding:6px;border-radius:8px;border:1px solid #ddd"
+          >
+        </td>
+
+        <td>
+          {% if i.units_in_stock < 50 %}
+            <span class="badge red">Low Stock</span>
+          {% else %}
+            <span class="badge green">In Stock</span>
+          {% endif %}
+        </td>
+
+        <td>
+          <input type="hidden" name="store" value="{{ i.store }}">
+          <input type="hidden" name="product" value="{{ i.product_name }}">
+          <button type="submit">Save</button>
+        </td>
+
+      </form>
+    </tr>
+    {% endfor %}
+
+  </table>
+
+</div>
+
+{% endblock %}

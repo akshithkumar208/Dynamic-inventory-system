@@ -1,0 +1,199 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- ================= DASHBOARD HEADER ================= -->
+<div style="margin-bottom:24px">
+  <h2>Dashboard 👋</h2>
+  <p style="color:#6b7280;font-size:14px">
+    Overview of inventory, shops, and system activity
+  </p>
+</div>
+
+<!-- ================= KPI CARDS ================= -->
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <span>Total Products</span>
+    <h2>{{ total_products }}</h2>
+    <small>Across all locations</small>
+  </div>
+
+  <div class="kpi-card">
+    <span>Total Stock</span>
+    <h2>{{ total_stock }}</h2>
+    <small>Units available</small>
+  </div>
+
+  <div class="kpi-card">
+    <span>Low Stock</span>
+    <h2>{{ low_stock_count }}</h2>
+    <small>Needs attention</small>
+  </div>
+
+  <div class="kpi-card">
+    <span>Transfers Today</span>
+    <h2>{{ transfers_today }}</h2>
+    <small>Stock movements</small>
+  </div>
+</div>
+
+<!-- ================= INVENTORY BY LOCATION ================= -->
+<h3 style="margin:32px 0 16px">Inventory by Location</h3>
+
+<div class="location-grid">
+
+  {% for shop in shops %}
+  <div class="location-card shop">
+
+    <h4>🏪 {{ shop.name }}</h4>
+
+    <table class="stock-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in shop.products %}
+        <tr>
+          <td>{{ item.product }}</td>
+          <td>{{ item.qty }}</td>
+          <td>
+            <button
+              class="edit-btn"
+              onclick="openModal('{{ shop.name }}','{{ item.product }}','{{ item.qty }}')">
+              ✏️
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+  {% endfor %}
+
+</div>
+
+<!-- ================= ANALYTICS ================= -->
+<h3 style="margin:32px 0 16px">Analytics</h3>
+
+<div class="grid">
+
+  <div class="card">
+    <h4>Stock by Location</h4>
+    <canvas id="barChart" height="150"></canvas>
+  </div>
+
+  <div class="card">
+    <h4>Stock Distribution</h4>
+    <canvas id="pieChart" height="150"></canvas>
+  </div>
+
+  <div class="card">
+    <h4>Stock Health</h4>
+    <canvas id="healthChart" height="110"></canvas>
+ </div>
+
+</div>
+
+<!-- ================= EDIT MODAL ================= -->
+<div id="editModal" class="modal">
+  <div class="modal-box">
+    <h3>Edit Product Stock</h3>
+
+    <form method="post" action="/update_stock">
+      <input type="hidden" name="store" id="editStore">
+      <input type="hidden" name="product" id="editProduct">
+
+      <label>Quantity</label>
+      <input type="number" name="qty" id="editQty" required>
+
+      <div class="modal-actions">
+        <button type="submit">Save</button>
+        <button type="button" onclick="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= CHART JS ================= -->
+<script>
+const labels = {{ pie_labels | tojson }};
+const values = {{ pie_values | tojson }};
+
+// BAR CHART
+new Chart(barChart, {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Units',
+      data: values,
+      backgroundColor: '#4f46e5'
+    }]
+  }
+});
+
+// PIE CHART
+new Chart(pieChart, {
+  type: 'doughnut',
+  data: {
+    labels: labels,
+    datasets: [{
+      data: values,
+      backgroundColor: [
+        '#4f46e5',
+        '#22c55e',
+        '#f59e0b',
+        '#ef4444',
+        '#38bdf8'
+      ]
+    }]
+  }
+});
+
+// HEALTH CHART (COMPACT VERSION – ADD HERE)
+new Chart(healthChart, {
+  type: 'pie',
+  data: {
+    labels: ['Healthy', 'Low Stock'],
+    datasets: [{
+      data: [
+        {{ total_stock - low_stock_count }},
+        {{ low_stock_count }}
+      ],
+      backgroundColor: ['#22c55e', '#ef4444'],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          boxWidth: 12,
+          padding: 10
+        }
+      }
+    }
+  }
+});
+</script>
+
+<!-- ================= MODAL JS ================= -->
+<script>
+function openModal(store, product, qty) {
+  document.getElementById("editStore").value = store;
+  document.getElementById("editProduct").value = product;
+  document.getElementById("editQty").value = qty;
+  document.getElementById("editModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("editModal").style.display = "none";
+}
+</script>
+
+{% endblock %}

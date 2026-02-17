@@ -1,0 +1,11 @@
+date,product,quantity,from_store,to_store
+"{% extends ""layout.html"" %}",,,,
+{% block content %},,,,
+2025-12-24 15:30,Sugar,1000.0,Shop_A,Shop_B
+2025-12-25 21:40,Milk,10.0,Factory,Shop_A
+2025-12-25 22:02,Milk,10.0,Factory,Shop_A
+2025-12-25 22:06,Rice,1000.0,Factory,Shop_A
+2025-12-25 22:52,Bread,10.0,Shop_A,Shop_B
+2025-12-25 23:27,Rice,1000.0,Factory,Shop_A
+2025-12-26 18:16,Rice,50.0,Shop_A,Shop_B
+2025-12-26 18:51,Milk,500.0,Factory,Shop_A

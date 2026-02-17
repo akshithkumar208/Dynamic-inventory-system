@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Dynamic Inventory</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='ui.css') }}">
+</head>
+
+<body class="login-3d-body">
+
+<!-- 3D BACKGROUND -->
+<div class="bg-3d"></div>
+<div class="bg-overlay"></div>
+
+<!-- LOGIN -->
+<div class="login-wrapper">
+
+  <div class="login-glass">
+
+    <h2>Welcome Back 👋</h2>
+    <p class="login-subtitle">
+      Sign in to manage your inventory intelligently
+    </p>
+
+    {% if error %}
+      <div class="login-error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post">
+
+      <div class="field">
+        <input type="text" name="username" required>
+        <label>Username</label>
+        <span>👤</span>
+      </div>
+
+      <div class="field">
+        <input type="password" name="password" id="password" required>
+        <label>Password</label>
+        <span onclick="togglePassword()">👁️</span>
+      </div>
+
+      <div class="login-row">
+        <label><input type="checkbox"> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="login-btn">
+        Login →
+      </button>
+
+    </form>
+
+    <div class="login-footer">
+      © 2025 Dynamic Inventory System
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function togglePassword() {
+  const p = document.getElementById("password");
+  p.type = p.type === "password" ? "text" : "password";
+}
+</script>
+
+</body>
+</html>

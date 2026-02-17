@@ -1,0 +1,1131 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: #f5f6fa;
+  color: #111827;
+}
+
+/* ===== LAYOUT ===== */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  background: linear-gradient(180deg, #4b2aad, #3b1f91);
+  color: #fff;
+  padding: 24px 18px;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 32px;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  color: #e0e7ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: rgba(255,255,255,0.18);
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+  margin-left: 260px;
+  height: 64px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.topbar input {
+  width: 300px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.topbar .icons {
+  display: flex;
+  gap: 18px;
+  font-size: 18px;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  margin-left: 260px;
+  padding: 28px;
+}
+
+/* ===== KPI CARDS ===== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.kpi-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+}
+
+.kpi-card span {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.kpi-card h2 {
+  font-size: 28px;
+  margin: 6px 0;
+}
+
+.kpi-card small {
+  color: #22c55e;
+  font-size: 12px;
+}
+
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 22px;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+}
+
+.card h4 {
+  margin-bottom: 14px;
+}
+
+/* ===== TABLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th {
+  text-align: left;
+  color: #6b7280;
+  padding-bottom: 10px;
+}
+
+td {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.badge.green { background: #dcfce7; color: #166534; }
+.badge.red { background: #fee2e2; color: #991b1b; }
+
+/* =========================
+   LOGIN PAGE (ENHANCED)
+========================= */
+
+.login-body {
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #1e1b4b,
+    #312e81,
+    #0ea5e9,
+    #22c55e
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 8s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.login-container {
+  width: 900px;
+  max-width: 95%;
+  display: flex;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+  overflow: hidden;
+}
+
+/* LEFT CARD */
+.login-card {
+  flex: 1;
+  padding: 48px;
+  color: white;
+}
+
+.login-card h2 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.login-sub {
+  font-size: 14px;
+  color: #e0e7ff;
+  margin-bottom: 28px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.login-card input:focus {
+  outline: 2px solid #22d3ee;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #22d3ee);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.login-card button:hover {
+  opacity: 0.9;
+}
+
+.login-footer {
+  margin-top: 24px;
+  font-size: 12px;
+  color: #c7d2fe;
+}
+
+.login-error {
+  background: rgba(239,68,68,0.85);
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+/* RIGHT IMAGE */
+.login-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.08);
+}
+
+.login-visual img {
+  width: 75%;
+  max-width: 320px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+  .login-visual {
+    display: none;
+  }
+}
+/* ===== LOGIN INPUT ENHANCEMENTS ===== */
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.9);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.input-group span {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.input-group input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+}
+
+.input-group small {
+  cursor: pointer;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.login-options a {
+  color: #c7d2fe;
+  text-decoration: none;
+}
+
+.login-options a:hover {
+  text-decoration: underline;
+}
+
+
+/* =================================================
+   🚚 TRANSFER TRUCK ANIMATION (ADDED – SAFE)
+================================================= */
+
+.truck-container {
+  display: none;
+  margin-top: 14px;
+  text-align: center;
+}
+
+.road {
+  width: 100%;
+  height: 4px;
+  background: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.truck {
+  font-size: 36px;
+  position: relative;
+  animation: moveTruck 1.8s linear infinite;
+}
+
+.transfer-text {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #22c55e;
+  font-weight: 600;
+}
+
+@keyframes moveTruck {
+  from { left: -50px; }
+  to   { left: 100%; }
+}
+/* ===== Warehouse Route Animation ===== */
+
+.route-container {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  gap: 10px;
+}
+
+.warehouse {
+  text-align: center;
+  font-size: 26px;
+}
+
+.warehouse span {
+  display: block;
+  font-size: 12px;
+  color: #374151;
+  margin-top: 4px;
+}
+
+.road {
+  flex: 1;
+  height: 4px;
+  background: #9ca3af;
+  position: relative;
+  overflow: hidden;
+}
+
+.truck {
+  position: absolute;
+  left: -40px;
+  top: -22px;
+  font-size: 32px;
+  animation: moveRouteTruck 1.5s linear forwards;
+}
+
+@keyframes moveRouteTruck {
+  from { left: -40px; }
+  to { left: 100%; }
+}
+/* ===== FULL SCREEN TRANSFER OVERLAY ===== */
+
+#transferOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#transferOverlay.show {
+  display: flex;
+}
+
+/* ===== ULTRA REALISTIC TRANSFER OVERLAY ===== */
+
+/* ===== BIG & REALISTIC TRANSFER OVERLAY ===== */
+
+#transferOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#transferOverlay.show {
+  display: flex;
+}
+
+/* BIG CENTER CARD */
+.overlay-content {
+  background: #ffffff;
+  width: 600px;
+  padding: 50px 60px;
+  border-radius: 26px;
+  text-align: center;
+  box-shadow: 0 50px 120px rgba(0,0,0,0.55);
+  animation: zoomIn 0.45s ease-out;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* STORE LABELS */
+.warehouse-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* BIG ROAD */
+.big-road {
+  width: 100%;
+  height: 10px;
+  margin: 28px 0;
+  background: repeating-linear-gradient(
+    to right,
+    #9ca3af 0,
+    #9ca3af 30px,
+    transparent 30px,
+    transparent 60px
+  );
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* BIG TRUCK */
+.big-truck {
+  position: absolute;
+  left: -120px;
+  top: -48px;
+  font-size: 70px;
+  animation: moveBigTruck 2.2s cubic-bezier(.65,.05,.36,1) forwards;
+}
+
+@keyframes moveBigTruck {
+  from { left: -120px; }
+  to { left: 100%; }
+}
+
+/* TEXT */
+.overlay-text {
+  margin-top: 26px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #16a34a;
+  letter-spacing: 0.4px;
+}
+/* ===== DELIVERY ANIMATION (LOADING → MOVING → DELIVER) ===== */
+/* =================================================
+/* =================================================
+   🚚 ULTRA REALISTIC DELIVERY ANIMATION
+================================================= */
+
+#transferOverlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(15,23,42,0.95),
+    rgba(2,6,23,0.95)
+  );
+  backdrop-filter: blur(12px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#transferOverlay.show {
+  display: flex;
+}
+
+.overlay-box {
+  background: linear-gradient(180deg, #f8fafc, #e2e8f0);
+  width: 720px;
+  padding: 48px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 80px 160px rgba(0,0,0,0.7);
+  animation: cinematicIn 0.6s ease;
+}
+
+@keyframes cinematicIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Labels */
+.warehouse-label {
+  font-size: 20px;
+  font-weight: 800;
+  color: #020617;
+  margin-bottom: 12px;
+}
+
+/* =====================
+   📦 LOADING PHASE
+===================== */
+.loading-zone {
+  position: relative;
+  height: 160px;
+}
+
+.loading-zone.done {
+  display: none;
+}
+
+.truck-load {
+  font-size: 76px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 16px 24px rgba(0,0,0,0.5));
+}
+
+.truck-load.idle {
+  animation: idleBounce 0.9s ease-in-out infinite;
+}
+
+@keyframes idleBounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-4px); }
+}
+
+/* Boxes */
+.box {
+  position: absolute;
+  font-size: 34px;
+  animation: loadBox 1.6s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+
+.box1 { left: 42%; animation-delay: 0s; }
+.box2 { left: 50%; animation-delay: 0.35s; }
+.box3 { left: 58%; animation-delay: 0.7s; }
+
+@keyframes loadBox {
+  from { top: -30px; opacity: 0; }
+  to { top: 86px; opacity: 1; }
+}
+
+/* =====================
+   🛣️ TRAVEL PHASE
+===================== */
+.road {
+  display: none;
+  width: 100%;
+  height: 14px;
+  margin: 32px 0;
+  background: repeating-linear-gradient(
+    to right,
+    #22c55e 0,
+    #22c55e 36px,
+    transparent 36px,
+    transparent 72px
+  );
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 24px rgba(34,197,94,0.9);
+}
+
+.truck-move {
+  position: absolute;
+  font-size: 82px;
+  left: -140px;
+  top: -64px;
+  animation: accelerate 2.8s cubic-bezier(.55,.01,.32,1) forwards;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,0.6));
+}
+
+@keyframes accelerate {
+  0%   { left: -140px; transform: translateY(0); }
+  30%  { transform: translateY(-2px); }
+  60%  { transform: translateY(1px); }
+  100% { left: 100%; transform: translateY(0); }
+}
+
+/* Status */
+.status-text {
+  margin-top: 22px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #16a34a;
+  letter-spacing: 0.5px;
+}
+/* =================================================
+   🌟 PREMIUM LOGIN EXPERIENCE
+================================================= */
+
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-glass {
+  width: 420px;
+  padding: 48px 42px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.45);
+  color: white;
+  animation: slideUp 0.6s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.login-glass h2 {
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #e0e7ff;
+  margin-bottom: 28px;
+}
+
+/* INPUT FIELD */
+.field {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.field input {
+  width: 100%;
+  padding: 16px 44px 16px 14px;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.field label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: #6b7280;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.field span {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* FLOATING LABEL */
+.field input:focus + label,
+.field input:valid + label {
+  top: -8px;
+  font-size: 11px;
+  background: #1e1b4b;
+  padding: 0 6px;
+  border-radius: 6px;
+  color: #c7d2fe;
+}
+
+/* ROW */
+.login-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+.login-row a {
+  color: #c7d2fe;
+  text-decoration: none;
+}
+
+/* BUTTON */
+.login-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #4f46e5, #22d3ee);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(34,211,238,0.6);
+}
+
+/* FOOTER */
+.login-footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #c7d2fe;
+  text-align: center;
+}
+/* =================================================
+   🌌 3D BACKGROUND LOGIN EXPERIENCE
+================================================= */
+
+.login-3d-body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* 3D IMAGE BACKGROUND */
+.bg-3d {
+  position: fixed;
+  inset: 0;
+  background-image: url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d");
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px) brightness(0.8);
+  transform: scale(1.05);
+  z-index: -2;
+}
+
+
+/* DARK OVERLAY */
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(30,27,75,0.88),
+    rgba(59,130,246,0.65),
+    rgba(16,185,129,0.65)
+  );
+  z-index: -1;
+}
+
+
+/* CENTER WRAPPER */
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* GLASS CARD */
+.login-glass {
+  width: 440px;
+  padding: 52px 48px;
+  border-radius: 28px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.22),
+    rgba(255,255,255,0.12)
+  );
+  backdrop-filter: blur(24px);
+  box-shadow:
+    0 40px 120px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+  color: white;
+}
+
+
+@keyframes floatIn {
+  from {
+    transform: translateY(60px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* TITLE */
+.login-glass h2 {
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #e0e7ff;
+  margin-bottom: 28px;
+}
+
+/* INPUT FIELD */
+.field {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.field input {
+  width: 100%;
+  padding: 16px 44px 16px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.25);
+  outline: none;
+  font-size: 14px;
+  background: rgba(255,255,255,0.9);
+  transition: 0.25s;
+}
+
+
+.field label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: #6b7280;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.field span {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* FLOATING LABEL */
+
+.field input:focus + label,
+.field input:valid + label {
+  top: -8px;
+  font-size: 11px;
+  background: linear-gradient(135deg, #4f46e5, #22d3ee);
+  padding: 0 8px;
+  border-radius: 8px;
+  color: white;
+}
+
+
+/* ROW */
+.login-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+.login-row a {
+  color: #c7d2fe;
+  text-decoration: none;
+}
+
+/* BUTTON */
+.login-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  background: linear-gradient(135deg, #4f46e5, #22d3ee);
+  color: white;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(34,211,238,0.6);
+}
+.login-btn:active {
+  transform: scale(0.97);
+}
+
+
+/* FOOTER */
+.login-footer {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #c7d2fe;
+  text-align: center;
+}
+/* =================================================
+/* ================= EXTRA DASHBOARD INFO ================= */
+
+.extra-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.extra-card {
+  background: #fff;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+.extra-card span {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.extra-card h2 {
+  font-size: 26px;
+  margin: 6px 0;
+}
+
+.extra-card small {
+  font-size: 12px;
+  color: #16a34a;
+}
+
+/* VARIANTS */
+.extra-card.warn h2 { color: #f97316; }
+.extra-card.info h2 { color: #2563eb; }
+.extra-card.success h2 { color: #16a34a; }
+
+/* ================= LOCATION CARDS ================= */
+
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.location-card {
+  background: linear-gradient(135deg, #4f46e5, #22d3ee);
+  padding: 18px;
+  border-radius: 16px;
+  color: white;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+  transition: 0.3s;
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
+}
+
+.location-card h4 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.location-card .qty {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.location-card button {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(255,255,255,0.9);
+  color: #111827;
+}
+
+/* FACTORY COLOR */
+.location-card.factory {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+/* SHOP COLOR */
+.location-card.shop {
+  background: linear-gradient(135deg, #4f46e5, #38bdf8);
+}
+/* ===== MODAL ===== */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-box {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  width: 320px;
+}
+
+.modal-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+/* ================= SIDEBAR UPGRADE ================= */
+
+.sidebar {
+  background: linear-gradient(
+    180deg,
+    #1e1b4b,
+    #312e81,
+    #0f172a
+  );
+  box-shadow: 4px 0 18px rgba(0,0,0,0.35);
+}
+
+.sidebar h2 {
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.sidebar a {
+  margin: 10px 0;
+  padding: 14px 18px;
+  border-radius: 14px;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateX(4px);
+}
+
+.sidebar a.active {
+  background: linear-gradient(135deg, #4f46e5, #22d3ee);
+  color: white;
+  box-shadow: 0 10px 26px rgba(34,211,238,0.6);
+}
+/* ================= EMERGENCY CLICK FIX ================= */
+/* This fixes invisible overlays blocking clicks */
+
+*::before,
+*::after {
+  pointer-events: none !important;
+}
+
+/* But allow real elements to be clickable */
+button,
+a,
+input,
+select,
+textarea {
+  pointer-events: auto !important;
+}
